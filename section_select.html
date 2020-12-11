@@ -1,0 +1,163 @@
+<html>
+
+<head>
+    <title>Sections</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .block {
+            background: #000;
+            padding: 50px;
+            color: white;
+            height: calc(100vh - 72px);
+        }
+
+        .block:first-child {
+            padding-top: 72px;
+            box-sizing: content-box;
+        }
+
+        .block.a {
+            background: #3f3f3f;
+        }
+
+        .block.b {
+            background: #c0c0c0;
+        }
+
+        .block.c {
+            background: #d3d3d3;
+        }
+
+        .block.d {
+            background: #0c0c0c;
+        }
+
+        .nav {
+            background: tomato;
+            height: 35px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .header {
+            width: 100%;
+            height: auto;
+            background: white;
+            position: fixed;
+        }
+
+        .sticky {
+            position: fixed;
+        }
+
+        .nav span {
+            height: 35px;
+            padding-top: 10px;
+            padding-left: 25px;
+            padding-right: 25px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: -4px;
+            background: #ff7147;
+            transition: all 0.3s;
+        }
+
+        .nav span:hover,
+        .nav span.active {
+            background: #cf603f;
+        }
+    </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <h1>Hello world</h1>
+        </div>
+        <div class="nav">
+            <span href="" class="a">a</span>
+            <span href="" class="b">b</span>
+            <span href="" class="c">c</span>
+            <span href="" class="d">d</span>
+            <span href="" class="e">e</span>
+            <span href="" class="f">f</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="block a">Section a</div>
+        <div class="block b">Section b</div>
+        <div class="block c">Section c</div>
+        <div class="block d">Section d</div>
+        <div class="block e">Section e</div>
+        <div class="block f">Section f</div>
+    </div>
+    <script>
+        /* 
+  Default template:
+    .nav
+      .nav-item
+      
+    .container
+      .container-item
+  THe .nav-item and .container-item must be the same
+*/
+
+        //Globale
+        //Selectors *space in selectors mean child of!*
+        tab = '.nav';
+        tabSpace = '.header';
+        tabItems = ' span';
+        container = '.container';
+        containerItems = ' div';
+        console.log($(tabSpace).outerHeight())
+        //Load elements items
+        sectionsAll = []
+        $(container + containerItems).map(function (item) {
+
+            //For some resong this get error with 10pixel
+            sectionsAll.push($(this).offset().top - Number($(tabSpace).outerHeight() + 10));
+        });
+        countSections = sectionsAll.length
+        console.log("items:" + sectionsAll)
+        console.log("items count:" + countSections)
+
+        function toSection(section) {
+            //Section selector
+            toElem = $(section).offset();
+            $("html, body").animate({
+                scrollTop: toElem.top - $(tabSpace).outerHeight()
+            }, 500, 'swing')
+        }
+
+        //Nav section add event
+        $(tab + tabItems).each(function (e) {
+            $(this).on('click', function () {
+                //+1 from e = e-1
+                toSection($(container + containerItems + ':nth-child(' + Number(e + 1) + ')'));
+            });
+        });
+
+        //For each element create scroll event listener for monitoring the progress on page.
+        $.each(sectionsAll, function (index, item) {
+            $(document).scroll(function (e) {
+                if ($(e.target).scrollTop() >= item) {
+                    console.log('item:' + item + ' index of ' + index + ' y-pos:' + $(e.target)
+                        .scrollTop())
+                    $(tab + tabItems + ':nth-child(' + index + ')').removeClass('active');
+                    $(tab + tabItems + ':nth-child(' + Number(index + 1) + ')').addClass('active');
+                } else {
+                    $(tab + tabItems + ':nth-child(' + Number(index + 1) + ')').removeClass('active');
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

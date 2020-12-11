@@ -1,0 +1,1100 @@
+<html>
+
+<head>
+    <title>HTML5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #A2ABB5;
+            font-family: 'Merriweather', serif;
+            font-size: 14px;
+        }
+
+
+        /* Typography */
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Social Icons */
+        a[href*="facebook"]:after {
+            font-size: 22px;
+            font-family: "FontAwesome";
+            content: '\f230';
+        }
+
+        a[href*="instagram"]:after {
+            font-size: 22px;
+            font-family: "FontAwesome";
+            content: '\f16d';
+        }
+
+        a[href*="pinterest"]:after {
+            font-size: 22px;
+            font-family: "FontAwesome";
+            content: '\f0d2';
+        }
+
+        a[href*="youtube"]:after {
+            font-size: 22px;
+            font-family: "FontAwesome";
+            content: '\f16a';
+        }
+
+        /* Other Links */
+
+        a:before {
+            margin: 0 5px;
+        }
+
+        a.link_hightlight {
+            font-size: 22px;
+        }
+
+        a[target=_blank]:before {
+            font-family: "FontAwesome";
+            content: '\f08e';
+            text-decoration: none;
+        }
+
+        a[href$=".pdf"]:before {
+            font-family: "FontAwesome";
+            content: '\f1c1';
+        }
+
+        a[href$=".zip"]:before,
+        a[href$=".rar"]:before {
+            font-family: "FontAwesome";
+            content: '\f1c6';
+        }
+
+        a[href$=".doc"]:before {
+            font-family: "FontAwesome";
+            content: '\f1c2';
+        }
+
+        a:hover {
+            color: #6DD6DA;
+        }
+
+        p {
+            line-height: 24px;
+            font-size: 14px;
+            font-family: 'Source Sans Pro';
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Merriweather";
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 26px;
+        }
+
+        h4 {
+            font-size: 22px;
+        }
+
+        h5 {
+            font-size: 18px;
+        }
+
+        h6 {
+            font-size: 16px;
+        }
+
+        .header {
+            z-index: 103;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .header .container {
+            padding: 20px;
+        }
+
+        @media screen and (max-width: 764px) {
+            .header .container {
+                padding-right: 0;
+                width: calc(100% - 66px);
+                display: inline-block;
+                margin-left: -3.5px;
+            }
+
+            .nav-mobile .container {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        .page {
+            background: #A2ABB5;
+            font-size: 16px;
+        }
+
+        .social {
+            display: inline-block;
+            vertical-align: middle;
+            width: 50%;
+            margin-right: -3.5px;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        @media screen and (max-width: 764px) {
+            .social {
+                display: none;
+            }
+
+            .nav-mobile .social {
+                display: block;
+                text-align: right;
+                width: 100%;
+            }
+
+            .social a {
+                display: inline-block !important;
+            }
+        }
+
+        .social a {
+            margin-right: 10px;
+            background: transparent !important;
+            margin-top: 10px;
+            display: inline-block
+        }
+
+        .social a:last-child {
+            margin-right: 0;
+        }
+
+        .social a::after:hover {
+            color: #6DD6DA !important;
+        }
+
+        .nav .container {
+            font-family: "Source Sans Pro", sans-serif;
+            max-width: 850px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            padding: 0 15px;
+            transition: all 0.3s;
+        }
+
+        .nav {
+            background: #AE8CA3;
+        }
+
+        .nav ul {
+            list-style-type: none;
+        }
+
+        .nav .dropdow>ul li {
+            display: block;
+            width: 100%;
+        }
+
+        .nav .dropdown>ul li a {
+            margin: 0;
+        }
+
+        .nav ul:first-of-type li {
+            display: inline-block;
+        }
+
+        .dropdown li {
+            display: block !important;
+            border-bottom: 1px solid #3333;
+        }
+
+        .nav ul:first-of-type li:hover {
+            background: #95D9DA;
+        }
+
+        .nav ul a {
+            transition: all 0.3s;
+            color: #000;
+            text-decoration: none;
+            padding: 15px;
+            width: 100%;
+            display: block;
+        }
+
+        .nav ul a {
+            border-right: 1px solid #2222;
+        }
+
+        .nav ul li:last-child a {
+            border-right: 0;
+        }
+
+        .nav ul li:last-child {
+            border-bottom: 0;
+            ;
+        }
+
+        .nav ul:first-of-type li:first-of-type a {
+            margin: 0;
+        }
+
+        .nav ul a:hover {
+            color: black;
+            background: #6DD6DA;
+        }
+
+        .nav a.active {
+            background: #6DD6DA;
+        }
+
+        .logo {
+            text-align: left;
+            margin: 0 auto;
+            color: #000;
+            width: 50%;
+            display: inline-block;
+            margin-right: -3.5px;
+            vertical-align: middle;
+        }
+
+        @media screen and (max-width: 764px) {
+            .logo {
+                display: inline-block;
+                width: 60%;
+                margin-left: -4.5px;
+                vertical-align: middle;
+            }
+        }
+
+        .logo_title {
+            font-size: 38px;
+            display: block;
+        }
+
+        .content {
+            font-family: "Source Sans Pro", sans-serif;
+            padding-top: 50px;
+            padding: 15px;
+            max-width: 830px;
+            margin: 0 auto;
+        }
+
+        .content-links {
+            margin: 25px 0;
+        }
+
+        .content-links a {
+            margin-right: 10px;
+        }
+
+        @media screen and (max-width: 764px) {
+            .content .accordion h3 {
+                font-size: 14px;
+                ;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .content p {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .sticky {
+            position: fixed;
+            width: 100%;
+        }
+
+        .nav.sticky {
+            top: 0;
+            z-index: 99;
+        }
+
+        .nav.sticky ul:first-of-type a {
+            padding: 10px 20px;
+        }
+
+        .search {
+            margin: 0 0 0 15px;
+            display: inline-block;
+            overflow-x: hidden;
+        }
+
+        @media screen and (max-width: 500px) {
+            .search {
+                position: static;
+                display: block;
+                margin: 0 15px;
+            }
+        }
+
+        .search input {
+            padding: 20px;
+            background: #6DD6DA;
+            border: 1px solid #95D9DA;
+            visibility: hidden;
+            opacity: 0;
+            max-width: 0;
+            transition: opacit 0.5s, max-width 0.5s;
+            top: 100%;
+            right: 15px;
+            position: absolute;
+            z-index: 101;
+        }
+
+        @media screen and (max-width: 764px) {
+            .search input {
+                position: absolute;
+                top: 15px;
+                right: 100px;
+            }
+        }
+
+        .search button:hover {
+            color: #95D9DA;
+        }
+
+        .search.active input {
+            margin-top: 10px;
+            max-width: 100%;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media screen and (max-width: 500px) {
+            .search.active input {
+                width: 100%;
+                position: static;
+                margin-top: 15px;
+            }
+
+            .carousel-layer p {
+                line-height: 24px !important;
+            }
+        }
+
+        .search.active button {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .search button {
+            background: transparent;
+            padding: 5px;
+            visibility: visible;
+            opacity: 1;
+            transition: all 0.5s;
+            font-size: 0;
+            border: none;
+        }
+
+        @media screen and (max-width: 764px) {
+            .search button {
+                padding: 5px;
+                position: absolute;
+                top: 38px;
+                right: 65px;
+            }
+
+            .search button:after {
+                font-size: 23px !important;
+            }
+
+        }
+
+        .search button:after {
+            font-family: 'FontAwesome';
+            font-size: 22px;
+            content: '\f002';
+        }
+
+        .content .container {
+            max-width: 850px;
+        }
+
+        .logo_mobile {
+            display: none;
+        }
+
+        .logo_mobile .logo {
+            text-align: left;
+            display: block;
+            max-width: 160px;
+            max-height: 100px;
+        }
+
+        .logo_mobile .logo_title {
+            font-size: 22px;
+            margin: 0;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+            font-family: 'Merriweather';
+        }
+
+        .logo_mobile p {
+            margin: 0;
+            vertical-align: middle;
+            display: none;
+        }
+
+        .logo_mobile {
+            transition: all 0.3s;
+            visibility: hidden;
+            opacity: 0;
+            max-width: 0;
+            max-height: 0;
+        }
+
+        @media screen and(max-width: 764px) {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .nav.sticky .logo_mobile {
+            visibility: visible;
+            display: block;
+            opacity: 1;
+            max-height: 60px;
+        }
+
+        .nav.sticky .logo {
+            padding: 0;
+        }
+
+        .container--carousel {
+            max-width: 900px;
+            position: relative;
+            padding-left: 25px;
+            padding-right: 25px;
+            margin: 0 auto;
+            height: 400px;
+        }
+
+        .carousel h1:before {
+            font-family: "FontAwesome";
+            font-size: 34px;
+            vertical-align: middle;
+            margin-right: 15px;
+            content: '\f017';
+            font-weight: 300;
+        }
+
+        .carousel .slick-prev,
+        .carousel .slick-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0;
+            background: transparent;
+            padding: 15px;
+            margin: 25px;
+            border-radius: 50%;
+            border: 0;
+            font-family: "FontAwesome";
+            z-index: 98;
+        }
+
+        .carousel .slick-prev:hover,
+        .carousel .slick-next:hover {
+            background: #95D9DA;
+        }
+
+        .carousel .slick-prev {
+            left: -25px;
+        }
+
+        .carousel .slick-prev:after {
+            font-size: 14px;
+            color: black;
+            font-family: 'FontAwesome';
+            content: '\f053';
+        }
+
+        .carousel .slick-next:after {
+            font-size: 14px;
+            color: black;
+            font-family: 'FontAwesome';
+            content: '\f054';
+        }
+
+        .carousel .slick-next {
+            right: -25px;
+        }
+
+        .carousel-layer {
+            text-align: center;
+            padding-top: 85px;
+        }
+
+        @media screen and (max-width: 764px) {
+            .carousel-layer {
+                padding-top: 50px;
+            }
+        }
+
+        .carousel-layer p {
+            width: 60%;
+            margin: 25px auto;
+            line-height: 34px;
+        }
+
+        .accordion .accordion_title {
+            cursor: pointer;
+            padding-right: 50px;
+            background: #95D9DA;
+            padding: 15px;
+            position: relative;
+            padding-right: 40px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .accordion .accordion_body {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.5s;
+            color: #333;
+        }
+
+        .accordion--reveal .accordion_title {
+            background: #6DD6DA;
+        }
+
+        .accordion--reveal .accordion_body {
+            opacity: 1;
+            max-height: 1000px;
+
+        }
+
+        .accordion--reveal .accordion_title:after {
+            transform: rotate(180deg) translateY(50%);
+        }
+
+        .nav ul ul {
+            z-index: 99;
+            max-height: 0;
+            transition: all 0.5s;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 180px;
+            background: #95D9DA;
+            overflow: hidden;
+            border-radius: 0 0 10px 10px;
+
+        }
+
+        .nav .dropdown:hover>ul {
+            max-height: 300px;
+            padding: 20px 0;
+        }
+
+        .nav.sticky ul ul {
+            z-index: 100;
+            top: 100%;
+            lefT: 0;
+        }
+
+        li.dropdown {
+            position: relative;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 0px 10px;
+            padding: 10px 20px;
+            border: 1px solid #000;
+            background: transparent;
+            border-radius: 10px;
+            color: #000;
+        }
+
+        .btn:hover {
+            background: #95D9DA;
+            border: 1px solid #95D9DA;
+        }
+
+        .btn.btn-contact:before {
+            font-family: 'FontAwesome';
+            font-size: 16px;
+            content: '\f003';
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .btn.btn-buy:before {
+            font-family: 'FontAwesome';
+            font-size: 16px;
+            content: '\f09d';
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .accordion_title:after {
+            font-family: "FontAwesome";
+            content: '\f078';
+            font-weight: 300;
+            font-size: 16px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;
+            transition: all 0.3s;
+        }
+
+        .toTop {
+            position: fixed;
+            visibility: hidden;
+            transition: all 0.3s;
+            right: 25px;
+            bottom: 25px;
+            background: #95D9DA;
+            padding: 10px;
+            opacity: 0;
+        }
+
+        .toTop.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .toTop:after {
+            font-family: "FontAwesome";
+            font-size: 24px;
+            content: '\f106';
+        }
+
+        .toTop:hover {
+            background: #6DD6DA;
+        }
+
+        /* Mobile Nav */
+        .nav-mobile {
+            display: none;
+        }
+
+        @media screen and (max-width: 764px) {
+            .nav-mobile {
+                display: block;
+            }
+        }
+
+        .nav-mobile ul {
+            max-height: 0;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .nav-mobile>ul {
+            padding: 25px !important;
+            margin: 25px !important;
+        }
+
+        .nav-mobile--active ul {
+            max-height: 1000px;
+        }
+
+        .nav-mobile ul:first-of-type a {
+            display: block;
+            padding: 15px 20px;
+            color: black;
+            background: #AE8CA3;
+            text-decoration: none;
+            font-family: 'Source Sans Pro';
+        }
+
+        .nav-mobile ul:first-of-type a.active {
+            background: #95D9DA;
+        }
+
+        .nav-mobile ul:first-of-type a:hover {
+            background: #95D9DA !important;
+        }
+
+        .nav-mobile li {
+            border-bottom: 1px solid #c0c0c0;
+        }
+
+        .nav-mobile li:last-child {
+            border: 0;
+        }
+
+        .nav-mobile .dropdown {
+            position: relative;
+        }
+
+        .nav-mobile .dropdown>ul {
+            overflow: hidden;
+            transition: all 0.3s;
+            max-height: 0;
+        }
+
+        .nav-mobile .dropdown--active>ul {
+            max-height: 500px;
+        }
+
+        .nav-mobile .dropdown--active>a {
+            background: #95D9DA !important;
+        }
+
+        .nav-mobile .dropdown--active:after {
+            transform: rotate(180deg);
+        }
+
+        .nav-mobile .dropdown:after {
+            transition: all 0.3s;
+            font-family: 'FontAwesome';
+            position: absolute;
+            right: 15px;
+            top: 19px;
+            content: '\f078';
+        }
+
+        .nav-mobile ul ul a {
+            background: #ae8ca39e !important;
+            padding-left: 30px !important;
+        }
+
+        .nav-mobile ul ul li:last-child a {
+            background: #ae8ca39e !important;
+            padding-left: 30px !important;
+            border-bottom: 0;
+        }
+
+        .nav-mobile_toggle {
+            padding: 15px 15px;
+            margin: 0;
+        }
+
+        @media screen and (min-width: 764px) {
+            .nav-mobile_toggle {
+                display: none;
+            }
+        }
+
+        .nav-mobile_toggle span:after {
+            font-family: 'FontAwesome';
+            content: '\f0c9';
+            font-size: 34px;
+        }
+
+        /* Toggle Mob & Desktop nav */
+        @media screen and (max-width: 764px) {
+            .nav {
+                display: none;
+            }
+
+            .nav-mobile_toggle {
+                display: inline-block;
+                min-width: 60px;
+                margin-left: -3.5px;
+                text-align: right;
+                vertical-align: middle;
+                transition: all 0.5s;
+            }
+
+            .nav-mobile_toggle span:hover {
+                color: #95D9DA;
+            }
+        }
+
+        .footer {
+            padding: 50px 0;
+            background: #333;
+        }
+
+        .footer-container {
+            margin: 0 auto;
+            max-width: 830px;
+            padding: 0 30px;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Source+Sans+Pro:400,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href='https://cdn.jsdelivr.net/npm/toast-grid@0.2.0/css/grid.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="container">
+                <div class="logo">
+                    <span class=logo_title>
+                        HTML5
+                    </span>
+                    <p>
+                        Learn every day 24/24h.
+                    </p>
+                </div>
+                <div class="social">
+                    <a href="//facebook.com/"></a>
+                    <a href="//youtube.com/"></a>
+                    <a href="//instagram.com/"></a>
+                    <a href="//pinterest.com/"></a>
+                </div>
+            </div>
+            <div class="nav-mobile_toggle">
+                <span></span>
+            </div>
+            <div class="nav-mobile">
+                <div class="logo_mobile"></div>
+            </div>
+            <div class="nav">
+                <div class="container">
+                    <div class="logo_mobile"></div>
+                    <ul>
+                        <li><a class='active' href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li class="dropdown"><a href="#">Services</a>
+                            <ul>
+                                <li><a href="#">Pay online</a></li>
+                                <li><a href="#">Order now</a></li>
+                                <li><a href="#">Redistribution</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#">Contact</a>
+                            <ul>
+                                <li><a href="#">Management</a></li>
+                                <li><a href="#">Gouvernance</a></li>
+                                <li><a href="#">Sales</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="search">
+                        <input class="search-input" placeholder="Search in ..." type="text">
+                        <button class="search-button"> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="container--carousel">
+                <div class="carousel">
+                    <div class="carousel-layer">
+                        <h1>Title1</h1>
+                        <p>
+                            Loream ipsul dolar sit amet. Loream ipsul dolar sit amet.Loream ipsul dolar sit amet.Loream
+                            ipsul dolar sit amet.Loream ipsul dolar sit amet.
+                        </p>
+                        <button class="btn btn-buy">Order it</button>
+                    </div>
+                    <div class="carousel-layer">
+                        <h1>Title</h1>
+                        <p>
+                            Loream ipsul dolar sit amet Loream ipsul dolar sit amet.Loream ipsul dolar sit amet.Loream
+                            ipsul dolar sit amet.
+                        </p>
+                        <button class="btn btn-contact">Contact us</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content-links">
+                <div class="grid">
+                    <div class="grid__col grid__col--1-of-3">
+                        <a href="#">Exemple link</a>
+                    </div>
+                    <div class="grid__col grid__col--1-of-3">
+                        <a target="_blank" href="#">Exemple link external</a>
+                    </div>
+                    <div class="grid__col grid__col--1-of-3">
+                        <a href="exemple.pdf">Exemple PDF file</a>
+                    </div>
+                    <div class="grid__col grid__col--am grid__col--1-of-2">
+                        <a href="exemple.doc">Exemple DOC file</a>
+                    </div>
+                    <div class="grid__col gird__col--am grid__col--1-of-2">
+                        <a class="link_hightlight" href="exemple.rar">Exemple RAR & ZIP file with HIGHTLIGHT class</a>
+                    </div>
+                </div>
+            </div>
+
+            <h2>This is a h2 typography</h2>
+            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <h3>This is a h1 typography</h3>
+            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <h4>This is a h1 typography</h4>
+            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <h5>This is a h1 typography</h5>
+            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <h6>This is a h1 typography</h6>
+            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <div class="container">
+                <div class="content-posts">
+
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="grid">
+                    <div class="grid__col grid__col--1-of-4">
+                        <h3>Footer h3</h3>
+                        This is a paragraph This is a paragraph This is a paragraph This is a paragraph This is a
+                        paragraph
+                    </div>
+                    <div class="grid__col grid__col--1-of-4">
+                        <h3>Footer h3</h3>
+                        This is a paragraph This is a paragraph This is a paragraph This is a paragraph This is a
+                        paragraph
+                    </div>
+                    <div class="grid__col grid__col--1-of-4">
+                        <h3>Footer h3</h3>
+                        This is a paragraph This is a paragraph This is a paragraph This is a paragraph This is a
+                        paragraph
+                    </div>
+                    <div class="grid__col grid__col--1-of-4">
+                        <h3>Footer h3</h3>
+                        This is a paragraph This is a paragraph This is a paragraph This is a paragraph This is a
+                        paragraph
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toTop">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script>
+        //Get JSON data
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(res => res.json())
+            .then(data => {
+                data.slice(0, 10).map(post => {
+                    $('.content-posts').append(
+                        "<div class='accordion'>" +
+                        "<h5 class='accordion_title'>" + post.title + "</h5>" +
+                        "<p class='accordion_body'>" + post.body + "</p>" +
+                        "</div>"
+                    );
+                })
+            })
+            .catch(error => $('.content-posts').text('Eror json: ' + error));
+
+        //Sticky nav
+        var header = $('.header');
+        var myNav = $('.nav');
+        $(window).scroll(function () {
+            if ($(document).scrollTop() > (header.outerHeight() / 4)) {
+                myNav.addClass('sticky')
+                $('.toTop').addClass('visible');
+            } else {
+                myNav.removeClass("sticky")
+                $('.toTop').removeClass('visible');
+            }
+        })
+
+        //Search feature
+        $(document).on('click', (e) => {
+            if ($(e.target).closest('.search').length == 1) {
+
+            } else {
+                $('.search').removeClass('active');
+                header.removeClass('active');
+            }
+        })
+        $('.search button').on('click', () => {
+            $('.search').toggleClass('active');
+            header.toggleClass('active');
+        });
+
+        //Clone to
+        $('.logo').clone().appendTo('.logo_mobile');
+        $('.nav .container').clone(true).appendTo('.nav-mobile');
+        $('.social').clone().appendTo('.nav-mobile ul:first-of-type').first();
+
+        //Carousel
+        $('.carousel').slick({
+            autoplay: true,
+            arrow: true,
+            infinite: true
+        });
+
+        //toTop
+        $(document).on('click', '.accordion_title', function () {
+            $(this).parent().toggleClass('accordion--reveal');
+        });
+        $('.toTop').on('click', function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 1000);
+        });
+
+        //Mobile nav lvl 2 toggle 
+        $('.nav-mobile .dropdown').on('click', function () {
+            $(this).toggleClass('dropdown--active')
+        });
+
+        //Mobile nav lvl1 toggle 
+        $('.nav-mobile_toggle span').on('click', function () {
+            $('.nav-mobile').toggleClass('nav-mobile--active')
+        })
+    </script>
+</body>
+
+</html>

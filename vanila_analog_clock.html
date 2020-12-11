@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanila Analog Clock</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: #d3d3d3;
+        }
+
+        .container {
+            max-width: 840px;
+            text-align: center;
+            margin: auto;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+
+        .clock-box {
+            width: auto;
+            font-size: 0;
+            display: inline-block;
+            background: silver;
+            margin: auto;
+            position: relative;
+            border: 25px solid grey;
+            border-radius: 10px;
+        }
+
+
+
+
+        .block {
+            width: 100px;
+            height: 100px;
+            display: block;
+            background: white;
+        }
+
+        .count {
+            text-align: center;
+            overflow: hidden;
+            display: inline-block;
+            position: relative;
+            margin-left: -4px;
+
+        }
+
+        .count:nth-child(2n+0):not(:last-child) {
+            border-right: 5px solid grey;
+        }
+
+        .count .numbers {
+            position: absolute;
+            top: 0;
+            margin: auto;
+            height: auto;
+            transition: top .2s cubic-bezier(0.4, 0, 1, 1);
+        }
+
+        .count .numbers span {
+            font-size: 72px;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #c1c1c1, white, #c1c1c1);
+            color: #808080;
+            border: 1px solid #c1c1c1;
+        }
+
+        .btnStop {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            padding: 5px;
+            width: auto;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: brown;
+            color: #fff;
+        }
+
+        button:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="clock-box">
+            <button class="btnStop" onClick="stopTimer();">Stop</button>
+            <div class="clock">
+                <div class="count block">
+                    <div class="numbers hours_h1 block">
+                        <span class="block">0</span>
+                        <span class="block">1</span>
+                        <span class="block">2</span>
+                        <span class="block">3</span>
+                        <span class="block">4</span>
+                        <span class="block">5</span>
+                        <span class="block">6</span>
+                    </div>
+                </div>
+                <div class="count block">
+                    <div class="numbers hours_h2 block">
+                        <span class="block">0</span>
+                        <span class="block">1</span>
+                        <span class="block">2</span>
+                        <span class="block">3</span>
+                        <span class="block">4</span>
+                        <span class="block">5</span>
+                        <span class="block">6</span>
+                        <span class="block">7</span>
+                        <span class="block">8</span>
+                        <span class="block">9</span>
+                    </div>
+                </div>
+                <div class="count block">
+                    <div class="numbers minutes_m1 block">
+                        <span class="block">0</span>
+                        <span class="block">1</span>
+                        <span class="block">2</span>
+                        <span class="block">3</span>
+                        <span class="block">4</span>
+                        <span class="block">5</span>
+                        <span class="block">6</span>
+                    </div>
+                </div>
+                <div class="count block">
+                    <div class="numbers minutes_m2 block">
+                        <span class="block">0</span>
+                        <span class="block">1</span>
+                        <span class="block">2</span>
+                        <span class="block">3</span>
+                        <span class="block">4</span>
+                        <span class="block">5</span>
+                        <span class="block">6</span>
+                        <span class="block">7</span>
+                        <span class="block">8</span>
+                        <span class="block">9</span>
+                    </div>
+                </div>
+                <div class="count block">
+                    <div class="numbers seconds_s1 block">
+                        <span class="block">0</span>
+                        <span class="block">1</span>
+                        <span class="block">2</span>
+                        <span class="block">3</span>
+                        <span class="block">4</span>
+                        <span class="block">5</span>
+                        <span class="block">6</span>
+                    </div>
+                </div>
+                <div class="count block">
+                    <div class="numbers seconds_s2 block">
+                        <span class="block">0</span>
+                        <span class="block">1</span>
+                        <span class="block">2</span>
+                        <span class="block">3</span>
+                        <span class="block">4</span>
+                        <span class="block">5</span>
+                        <span class="block">6</span>
+                        <span class="block">7</span>
+                        <span class="block">8</span>
+                        <span class="block">9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var blockHeight = document.querySelector('.block').offsetHeight
+        var myTimer = setInterval(function () {
+            myDate = new Date();
+            s = myDate.getSeconds().toString();
+            m = myDate.getMinutes().toString();
+            h = myDate.getHours().toString();
+            if (s <= 9) {
+                s = 0 + s
+            }
+            if (m <= 9) {
+                m = 0 + m
+            }
+            if (h <= 9) {
+                h = 0 + h
+            }
+            sString = (s.split(''))
+            positionS2 = (blockHeight * sString[1])
+            positionS1 = (blockHeight * sString[0])
+            mString = (m.split(''))
+            positionM2 = (blockHeight * mString[1])
+            positionM1 = (blockHeight * mString[0])
+            hString = (h.split(''))
+            positionH2 = (blockHeight * hString[1])
+            positionH1 = (blockHeight * hString[0])
+            console.log(h + ':' + m + ':' + s)
+            document.querySelector('.count .seconds_s2').style.top = -positionS2 + 'px';
+            document.querySelector('.count .seconds_s1').style.top = -positionS1 + 'px';
+            document.querySelector('.count .minutes_m2').style.top = -positionM2 + 'px';
+            document.querySelector('.count .minutes_m1').style.top = -positionM1 + 'px';
+            document.querySelector('.count .hours_h2').style.top = -positionH2 + 'px';
+            document.querySelector('.count .hours_h1').style.top = -positionH1 + 'px';
+        }, 1000);
+
+        function stopTimer() {
+            clearInterval(myTimer);
+        }
+    </script>
+</body>
+
+</html>

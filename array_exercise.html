@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+        }
+
+        .page {
+            padding: 25px;
+        }
+
+        .item {
+            cursor: pointer;
+            border: 1px solid grey;
+            display: inline-block;
+            margin-right: 5px;
+            padding: 5px;
+            font-weight: 300;
+        }
+
+        button {
+            padding: 10px;
+            text-transform: uppercase;
+            background: transparent;
+            appearance: none;
+            border: 1px solid black;
+            margin-right: 10px;
+        }
+
+        button:last-child {
+            margin-right: none;
+        }
+
+        button:hover {
+            background: black;
+            color: white;
+        }
+
+        input,
+        select {
+            padding: 10px;
+            border: none;
+            border-bottom: 1px solid black;
+            margin-right: 10px;
+        }
+
+        select {
+            border: 1px solid black;
+        }
+
+        .item:hover {
+            background: black;
+            color: #fff;
+        }
+
+        input:last-child,
+        select:last-child {
+            margin-right: 0;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            font-size: 22px;
+            margin-top: 50px;
+            text-transform: uppercase;
+        }
+
+        #container {
+            padding: 25px 0;
+            text-align: center;
+            font-size: 22px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;1,300;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="page">
+        <div id="container"></div>
+        <h1>Add new items</h1>
+        <input id="new-animal" type="text" placeholder="New animal">
+        <label for="order">To the</label>
+        <select name="order" id="order">
+            <option value="start">Beggining</option>
+            <option value="end">End</option>
+        </select>
+        <button onClick="addItem()">Run</button>
+        <div class="label">
+            <h1>Remove items</h1>
+        </div>
+        <button onClick="remFromStart()">Remove from start</button>
+        <button onClick="remFromEnd()">Remove from to end</button>
+    </div>
+    <script>
+        //Define default items
+        var items = '   Caine Pisica Hamster Papagal Omul-Paianjen   '
+        //Remove Spaces
+        var trims = items.trim()
+        //Convert to array
+        var convertToArray = trims.split(' ')
+        //Replace - with space
+        var addSpace = convertToArray.map(i => i.replace("-", " "));
+        //Console if is array
+        if (Array.isArray(addSpace)) {
+            console.log("Convered to array")
+        }
+        //Render to page
+        function renderToPage() {
+            var allItems = []
+            addSpace.map((i, index) => allItems.push('<div class="item" onClick="removeThis(' + index + ')">' + i +
+                '</div>'))
+            document.getElementById('container').innerHTML = allItems.toString().replace(/,/g, '');
+            console.log('All array are/is ' + addSpace.length)
+        }
+        //Get input id function
+        function getValOf(id) {
+            return document.getElementById(id).value
+        }
+        //Add new item function
+        function addItem() {
+            var newItem = getValOf('new-animal')
+            var order = getValOf('order')
+            if (newItem.trim() !== '') {
+                switch (order) {
+                    case 'start':
+                        console.log('Add item to beggining')
+                        addSpace.unshift(newItem)
+                        renderToPage()
+                        break
+                    case 'end':
+                        console.log('Add item to ending')
+                        addSpace.push(newItem)
+                        renderToPage()
+                        break
+                    default:
+                        console.log('Add item to end')
+                        break
+                }
+            } else {
+                alert("New animal input must be filled.")
+            }
+        }
+        //Remove item from start
+        function remFromStart() {
+            addSpace.shift()
+            renderToPage()
+            console.log('Remove item from start')
+        }
+        //Remove item from start
+        function remFromEnd() {
+            addSpace.pop()
+            renderToPage()
+            console.log('Remove item from end')
+        }
+        //Remove specific item
+        function removeThis(id) {
+            addSpace.splice(id, 1)
+            console.log('Removed item with index of ' + id)
+            renderToPage()
+        }
+        //Call first time render
+        renderToPage()
+    </script>
+</body>
+
+</html>
